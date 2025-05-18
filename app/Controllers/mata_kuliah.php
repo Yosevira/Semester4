@@ -3,21 +3,21 @@ class mata_kuliah extends BaseController
 {
     public function pemweb(): string
     {
-        return view('pemweb');
+        return view('Matkul/pemweb');
     }
 
     public function mjk(): string
     {
-        return view('mjk.php');
+        return view('Matkul/mjk');
     }
     public function rpl():string
     {
-        return view('rpl');
+        return view('Matkul/rpl');
     }
 
     public function mbd():string
     {
-        return view('mbd');
+        return view('Matkul/mbd');
     }
 
 }

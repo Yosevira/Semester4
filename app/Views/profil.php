@@ -95,9 +95,10 @@
         buket</p>
     <h2>Mata Kuliah</h2>
     <ul>
-        <li><a href="Matkul/Pemweb.html">Pemweb</a></li>
-        <li></li>
-        <li></li>
+        <li><a href='/pemweb'>Pemrograman Web</a></li>
+        <li><a href='/mbd'>Manajemen Basis Data</a></li>
+        <li><a href='/mjk'>Manajemen Jaringan Komputer</a></li>
+        <li><a href='/rpl'>Rekayasa Perangkat Lunak</a></li>
     </ul>
     <h2>Skill</h2>
     <ol>
