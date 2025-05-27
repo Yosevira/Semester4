@@ -19,8 +19,13 @@
                                 <snall class="text body secondary"><b>Penerbit :</b> <?= $buku['penerbit']; ?></snall>
                             </p>
 
-                            <a href="" class="btn btn-warning">Ubah</a>
-                            <a href="" class="btn btn-danger">Hapus</a>
+                            <a href="/books/edit/<?= $buku['slug'];?>" class="btn btn-warning">Ubah</a>
+                            <form action="/books/<?= $buku['id']; ?>" method="post" class="d-inline">
+                                <?= csrf_field(); ?>
+                                <input type="hidden" name="_method" value="delete">
+                                <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('apakah anda yakin menghapus data ini?')">Hapus</button>
+                            </form>
                             <br><br>
                             <a href="/books">Kembali ke Daftar Buku</a>
                         </div>

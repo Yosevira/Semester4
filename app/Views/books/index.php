@@ -26,7 +26,14 @@
                     <?php endforeach?>
                 </tbody>
             </table>
+            <a href="/books/create" class="btn btn-primary mb-3">Tambah Data Buku</a>
         </div>
     </div>
 </div>
 <?= $this->endsection() ?>
+
+<?php if (session()->getFlashdata('pesan')) : ?>
+<div class="alert alert-success">
+    <?= session()->getFlashdata('pesan'); ?>
+</div>
+<?php endif; ?>
