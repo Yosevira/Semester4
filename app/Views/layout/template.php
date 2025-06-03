@@ -21,6 +21,22 @@
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <!-- ms-auto untuk menggeser ke kanan -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="/books">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/books">Daftar Buku</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/books/create">Tambah Buku</a>
+                    </li>
+                    <!-- Tambah menu lain jika perlu -->
+                </ul>
+            </div>
         </div>
     </nav>
 

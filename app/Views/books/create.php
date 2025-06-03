@@ -5,10 +5,10 @@
     <div class="row">
         <div class="col-8">
             <h2 class="my-3">Form Tambah Data Komik</h2>
+            <?php if (isset($validation)) : ?>
+            <?php endif; ?>
             <?php if (session()->getFlashdata('pesan')) : ?>
-            <div class="alert alert-danger" role="alert">
-                <?= session()->getFlashdata('pesan'); ?>
-            </div>
+            <div class="alert alert-danger"><?= session()->getFlashdata('pesan'); ?></div>
             <?php endif; ?>
 
             <form action="/books/save" method="post">
@@ -64,4 +64,4 @@
         </div>
     </div>
 </div>
-<?= $this->endSection(); ?>
+<?= $this->endSection() ?>

@@ -9,6 +9,7 @@ class BookModel extends Model
     //bisa dilihat pada web codeigniter
     protected $table = 'books';
     protected $primaryKey = 'id';
+    protected $useAutoIncrement = true;
     protected $useTimestamps = true;
     protected $allowedFields = ['judul','slug','penulis','penerbit','sampul'];
 

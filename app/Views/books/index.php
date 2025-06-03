@@ -5,6 +5,12 @@
     <div class="row">
         <div class="col">
             <h1 class="mt-2">Daftar Buku</h1>
+            <?php if (session()->getFlashdata('pesan')) : ?>
+            <div class="alert alert-danger" role="alert">
+                <?= session()->getFlashdata('pesan'); ?>
+            </div>
+            <?php endif; ?>
+            <a href="/books/create" class="btn btn-primary mb-3">Tambah Data Buku</a>
             <table class="table">
                 <thead>
                     <tr>
@@ -26,7 +32,6 @@
                     <?php endforeach?>
                 </tbody>
             </table>
-            <a href="/books/create" class="btn btn-primary mb-3">Tambah Data Buku</a>
         </div>
     </div>
 </div>

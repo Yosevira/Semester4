@@ -20,7 +20,6 @@ $routes->get('/mbd','mata_kuliah::mbd');
 $routes->get('/books','Books::index');
 $routes->get('/books/detail/(:segment)','Books::detail/$1');
 $routes->delete('/books/delete/(:num)', 'Books::delete/$1');
-$routes->post('books/delete/(:num)', 'Books::delete/$1');
 $routes->get('/books/edit/(:segment)', 'Books::edit/$1');
 $routes->post('/books/update/(:num)', 'Books::update/$1');
 $routes->get('/books/create', 'Books::create');

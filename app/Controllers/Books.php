@@ -12,14 +12,14 @@ class Books extends BaseController
         $this->bukuModel = new BookModel();
     }
     public function index()
-    {
-        $buku = $this->bukuModel->findAll();
-        $data =[
-            'title' => 'Daftar Buku',
-            'buku' => $this->bukuModel->getBuku()
-        ];
-        return view('books/index', $data);
-    }
+{
+    $data = [
+        'title' => 'Daftar Buku',
+        'buku' => $this->bukuModel->findAll() // langsung saja
+    ];
+    return view('books/index', $data);
+}
+
     public function detail($slug)
     {
         //$buku = $this->bukuModel->where(['$slug' => $slug])->first();
@@ -53,60 +53,46 @@ class Books extends BaseController
 
         return view('books/create', $data);
     }
-
-    public function save()
-    {
-        if (!$this->validate([
-            'judul' => [
-                'rules' => 'required',
-                'errors'=> [
-                    'required' => 'Judul buku harus diisi',
+   public function save()
+{
+    if (!$this->validate([
+        'judul' => [
+            'rules' => 'required|is_unique[books.judul]',
+            'errors'=> [
+                'required' => 'Judul buku harus diisi',
+                'is_unique' => 'Judul buku sudah ada'
             ]
-            ],
-            'penulis' => [
-                'rules' => 'required',
-                'errors'=> [
-                    'required' => 'Penulis harus diisi'
-                ]
-            ],
-            'penerbit' => [
-                'rules' => 'required',
-                'errors'=> [
-                    'required' => 'Penerbit harus diisi'
-                ]
+        ],
+        'penulis' => [
+            'rules' => 'required',
+            'errors'=> [
+                'required' => 'Penulis harus diisi'
             ]
-        ])) {
-            return redirect()->to('/books/create')->withInput()->with('validation', \Config\Services::validation());
-
-}
-
-// Cek apakah data dengan kombinasi judul, penulis, penerbit sudah ada
-    $cekDuplikat = $this->bukuModel->where([
-        'judul' => $this->request->getVar('judul'),
-        'penulis' => $this->request->getVar('penulis'),
-        'penerbit' => $this->request->getVar('penerbit')
-    ])->first();
-
-    if ($cekDuplikat) {
-        session()->setFlashdata('pesan', 'Data dengan kombinasi tersebut sudah ada.');
-        return redirect()->to('/books/create')->withInput();
-}
- {
+        ],
+        'penerbit' => [
+            'rules' => 'required',
+            'errors'=> [
+                'required' => 'Penerbit harus diisi'
+            ]
+        ]
+    ])) {
         return redirect()->to('/books/create')->withInput()->with('validation', \Config\Services::validation());
     }
-        $slug = url_title($this->request->getVar('judul'), '-', true);
-        $this->bukuModel->save([
-            'judul' => $this->request->getVar('judul'),
-            'slug' => $slug,
-            'penulis' => $this->request->getVar('penulis'),
-            'penerbit' => $this->request->getVar('penerbit'),
-            'sampul' => $this->request->getVar('sampul')
-        ]);
 
-        session()->setFlashdata('pesan', 'Data berhasil ditambahkan');
+    $slug = url_title($this->request->getVar('judul'), '-', true);
 
-        return redirect()->to('/books');
-    }
+    $this->bukuModel->save([
+        'judul' => $this->request->getVar('judul'),
+        'slug' => $slug,
+        'penulis' => $this->request->getVar('penulis'),
+        'penerbit' => $this->request->getVar('penerbit'),
+        'sampul' => $this->request->getVar('sampul')
+    ]);
+
+    session()->setFlashdata('pesan', 'Buku berhasil ditambahkan.');
+    return redirect()->to('/books');
+}
+
     public function delete($id)
     {
         $this->bukuModel->delete($id);
@@ -135,6 +121,18 @@ class Books extends BaseController
         } else {
             $rule_judul = 'required|is_unique[books.judul]';
         }
+        if ($slugLama['penulis'] == $this->request->getVar('penulis')) {
+            $rule_penulis = 'required';
+        } else {
+            $rule_penulis = 'required|is_unique[books.penulis]';
+        }
+        if ($slugLama['penerbit'] == $this->request->getVar('penerbit')) {
+            $rule_penerbit = 'required';
+        } else {
+            $rule_penerbit= 'required|is_unique[books.penerbit]';
+        }
+
+
 
         // Validasi input
         if (!$this->validate([
