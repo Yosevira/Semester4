@@ -45,6 +45,22 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+    function previewImg() {
+        const sampul = document.querySelector('#sampul');
+        const imgPreview = document.querySelector('.img-preview');
+
+        if (sampul.files.length > 0) {
+            const fileSampul = new FileReader();
+            fileSampul.readAsDataURL(sampul.files[0]);
+
+            fileSampul.onload = function(e) {
+                imgPreview.src = e.target.result;
+            }
+        }
+    }
+    </script>
 </body>
 
 </html>
