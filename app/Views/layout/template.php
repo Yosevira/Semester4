@@ -32,6 +32,9 @@
                         <a class="nav-link" href="/books">Daftar Buku</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="/penulis">Daftar Penulis</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/books/create">Tambah Buku</a>
                     </li>
                     <!-- Tambah menu lain jika perlu -->

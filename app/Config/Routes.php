@@ -25,6 +25,7 @@ $routes->post('/books/update/(:num)', 'Books::update/$1');
 $routes->get('/books/create', 'Books::create');
 $routes->post('/books/save', 'Books::save');
 
-
+$routes->get('/penulis','Penulis::index');
+$routes->get('/penulis/detail/(:segment)','Penulis::detail/$1');
 
 $routes->setAutoRoute(false);
